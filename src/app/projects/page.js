@@ -8,18 +8,17 @@ export const metadata = {
 };
 
 export default async function PropertiesPage({ searchParams }) {
-  // const { query } = await searchParams;
-  const query = "";
+  const { query } = await searchParams;
 
-  const propertiesPromise = await fetch(
-    `${process.env.STRAPI_URL}/api/projects?populate=*`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-      },
-      next: { revalidate: 1 },
-    }
-  );
+  // const propertiesPromise = await fetch(
+  //   `${process.env.STRAPI_URL}/api/projects?populate=*`,
+  //   {
+  //     headers: {
+  //       Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+  //     },
+  //     cache: "no-store",
+  //   }
+  // );
 
   return (
     <section className="py-16">
@@ -31,7 +30,7 @@ export default async function PropertiesPage({ searchParams }) {
       </p>
 
       <Suspense fallback={<PropertyCardSkeletonList length="6" />}>
-        <PropertyList propertiesPromise={propertiesPromise} query={query} />
+        <PropertyList query={query} />
       </Suspense>
     </section>
   );

@@ -1,14 +1,14 @@
 import NoResultsCard from "./NoResultsCard";
 import PropertyCard from "./PropertyCard";
 
-export default async function PropertyList({ isFeatured = false, query }) {
+export default async function PropertyList({ isFeatured = false, query = "" }) {
   const propertiesPromise = await fetch(
     `${process.env.STRAPI_URL}/api/projects?populate=*`,
     {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
       },
-      cache: "no-store",
+      next: { revalidate: 1 },
     }
   );
 
@@ -19,7 +19,7 @@ export default async function PropertyList({ isFeatured = false, query }) {
       (property) => property.featured
     );
   } else {
-    if (query) {
+    if (query && query !== "") {
       const toBeFilteredProperties = await propertiesPromise.json();
       properties = toBeFilteredProperties.data.filter((property) => {
         const projectStatus = property.projectStatus.toLowerCase();

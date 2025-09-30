@@ -4,16 +4,7 @@ import MarkButton from "../common/MarkButton";
 import PropertyList from "../common/PropertyList";
 import PropertyCardSkeletonList from "../Skeleton/PropertyCardSkeletonList";
 
-export default async function FeaturedProperties() {
-  const propertyPromise = await fetch(
-    `${process.env.STRAPI_URL}/api/projects?populate=*`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-      },
-      next: { revalidate: 60 },
-    }
-  );
+export default function FeaturedProperties() {
   return (
     <section className="bg-mark-dark py-20">
       <div className="center">
@@ -24,7 +15,7 @@ export default async function FeaturedProperties() {
       </p>
 
       <Suspense fallback={<PropertyCardSkeletonList length="3" />}>
-        <PropertyList propertiesPromise={propertyPromise} isFeatured={true} />
+        <PropertyList isFeatured={true} />
       </Suspense>
 
       <div className="text-center mt-14">

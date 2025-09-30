@@ -22,7 +22,7 @@ export default function MobileNavigation() {
         <DropdownMenuContent className="w-56" align="start">
           <DropdownMenuGroup>
             {navItems.map(({ href, label }) => (
-              <DropdownMenuItem key={href}>
+              <DropdownMenuItem asChild key={href}>
                 <Link
                   href={href}
                   className="hover:text-primary transition-colors duration-300"

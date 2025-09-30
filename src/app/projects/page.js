@@ -8,7 +8,8 @@ export const metadata = {
 };
 
 export default async function PropertiesPage({ searchParams }) {
-  const { query } = await searchParams;
+  // const { query } = await searchParams;
+  const query = "";
 
   return (
     <section className="py-16">

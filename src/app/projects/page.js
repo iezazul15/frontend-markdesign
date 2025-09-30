@@ -10,16 +10,6 @@ export const metadata = {
 export default async function PropertiesPage({ searchParams }) {
   const { query } = await searchParams;
 
-  // const propertiesPromise = await fetch(
-  //   `${process.env.STRAPI_URL}/api/projects?populate=*`,
-  //   {
-  //     headers: {
-  //       Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-  //     },
-  //     cache: "no-store",
-  //   }
-  // );
-
   return (
     <section className="py-16">
       <div className="center">

@@ -11,7 +11,7 @@ export default async function FeaturedProperties() {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
       },
-      next: { revalidate: 60 },
+      next: { revalidate: 1 },
     }
   );
   return (

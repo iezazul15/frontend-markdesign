@@ -17,8 +17,7 @@ export default async function PropertiesPage({ searchParams }) {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
       },
-      // next: { revalidate: 1 },
-      cache: "no-store",
+      next: { revalidate: 1 },
     }
   );
 

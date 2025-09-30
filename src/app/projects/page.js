@@ -11,6 +11,17 @@ export default async function PropertiesPage({ searchParams }) {
   // const { query } = await searchParams;
   const query = "";
 
+  const propertiesPromise = await fetch(
+    `${process.env.STRAPI_URL}/api/projects?populate=*`,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+      },
+      // next: { revalidate: 1 },
+      cache: "no-store",
+    }
+  );
+
   return (
     <section className="py-16">
       <div className="center">
@@ -21,7 +32,7 @@ export default async function PropertiesPage({ searchParams }) {
       </p>
 
       <Suspense fallback={<PropertyCardSkeletonList length="6" />}>
-        <PropertyList query={query} />
+        <PropertyList propertiesPromise={propertiesPromise} query={query} />
       </Suspense>
     </section>
   );

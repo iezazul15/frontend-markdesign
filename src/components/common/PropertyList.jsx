@@ -8,6 +8,7 @@ export default async function PropertyList({ isFeatured = false, query = "" }) {
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
       },
+      cache: "force-cache",
       next: { revalidate: 1 },
     }
   );
